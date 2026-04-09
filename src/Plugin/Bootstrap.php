@@ -20,7 +20,9 @@ class Bootstrap {
 			return;
 		}
 
-		// Intentionally empty for Task 1 scaffold. Services are registered in later tasks.
+		\PMProProductLoop\Database\Installer::maybe_upgrade();
+
+		// Additional services are registered in later tasks.
 	}
 
 	/**
