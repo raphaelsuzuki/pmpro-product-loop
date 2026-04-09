@@ -1,0 +1,11 @@
+{
+  "name": "pmpro/pmpro-product-loop",
+  "description": "PMPro Product Loop bridge plugin for WooCommerce and PMPro Magic Levels",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "autoload": {
+    "psr-4": {
+      "PMProProductLoop\\": "src/"
+    }
+  }
+}
