@@ -32,11 +32,11 @@ class Bootstrap {
 		$errors = array();
 
 		if ( ! class_exists( 'WooCommerce' ) ) {
-			$errors[] = 'WooCommerce is required.';
+			$errors[] = __( 'WooCommerce is required.', 'pmpro-product-loop' );
 		}
 
 		if ( ! function_exists( 'pmpro_magic_levels_process' ) ) {
-			$errors[] = 'Paid Memberships Pro Magic Levels is required.';
+			$errors[] = __( 'Paid Memberships Pro Magic Levels is required.', 'pmpro-product-loop' );
 		}
 
 		return $errors;
@@ -47,7 +47,11 @@ class Bootstrap {
 			return;
 		}
 
-		echo '<div class="notice notice-error"><p><strong>PMPro Product Loop:</strong> Plugin initialization halted because required dependencies are missing.</p><ul style="margin-left:1.4em;list-style:disc;">';
+		echo '<div class="notice notice-error"><p><strong>';
+		echo esc_html__( 'PMPro Product Loop:', 'pmpro-product-loop' );
+		echo '</strong> ';
+		echo esc_html__( 'Plugin initialization halted because required dependencies are missing.', 'pmpro-product-loop' );
+		echo '</p><ul style="margin-left:1.4em;list-style:disc;">';
 		foreach ( self::$dependency_errors as $error ) {
 			echo '<li>' . esc_html( $error ) . '</li>';
 		}

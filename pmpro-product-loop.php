@@ -24,6 +24,7 @@ if ( file_exists( $composer_autoload ) ) {
 	spl_autoload_register(
 		static function ( $class ) {
 			$prefix = 'PMProProductLoop\\';
+			$class  = ltrim( $class, '\\' );
 			if ( 0 !== strpos( $class, $prefix ) ) {
 				return;
 			}
@@ -47,7 +48,7 @@ register_activation_hook(
 add_action(
 	'plugins_loaded',
 	static function () {
-		if ( class_exists( '\PMProProductLoop\Plugin\Bootstrap' ) ) {
+		if ( class_exists( 'PMProProductLoop\\Plugin\\Bootstrap' ) ) {
 			\PMProProductLoop\Plugin\Bootstrap::boot();
 		}
 	}
