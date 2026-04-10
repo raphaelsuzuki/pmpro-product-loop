@@ -40,6 +40,11 @@ if ( file_exists( $composer_autoload ) ) {
 	);
 }
 
+register_activation_hook(
+	__FILE__,
+	[ 'PMProProductLoop\Database\Installer', 'install' ]
+);
+
 add_action(
 	'plugins_loaded',
 	static function () {
