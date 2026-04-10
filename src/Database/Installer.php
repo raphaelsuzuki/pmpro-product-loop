@@ -21,8 +21,9 @@ class Installer {
 	 * Run on plugin activation: create tables and stamp the DB version.
 	 */
 	public static function install(): void {
-		self::create_tables();
-		update_option( self::DB_VERSION_OPTION, self::DB_VERSION );
+		if ( self::create_tables() ) {
+			update_option( self::DB_VERSION_OPTION, self::DB_VERSION );
+		}
 	}
 
 	/**
@@ -36,8 +37,9 @@ class Installer {
 			return;
 		}
 
-		self::create_tables();
-		update_option( self::DB_VERSION_OPTION, self::DB_VERSION );
+		if ( self::create_tables() ) {
+			update_option( self::DB_VERSION_OPTION, self::DB_VERSION );
+		}
 	}
 
 	/**
@@ -47,8 +49,10 @@ class Installer {
 	 *   - Each column/key definition on its own line.
 	 *   - Two spaces between PRIMARY KEY and the key definition.
 	 *   - No trailing comma on the last column before the KEY lines.
+	 *
+	 * @return bool True if schema creation succeeded, false otherwise.
 	 */
-	private static function create_tables(): void {
+	private static function create_tables(): bool {
 		global $wpdb;
 
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
@@ -70,5 +74,7 @@ class Installer {
 ) {$charset_collate};";
 
 		dbDelta( $sql );
+
+		return empty( $wpdb->last_error );
 	}
 }
