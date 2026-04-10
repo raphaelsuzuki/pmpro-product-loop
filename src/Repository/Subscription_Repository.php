@@ -96,4 +96,26 @@ class Subscription_Repository {
 
 		return $updated > 0;
 	}
+
+	/**
+	 * Lookup an active subscription by membership level and user.
+	 *
+	 * @return array|null
+	 */
+	public function find_active_by_user_and_level( int $user_id, int $level_id ): ?array {
+		$row = $this->wpdb->get_row(
+			$this->wpdb->prepare(
+				"SELECT * FROM {$this->table} WHERE user_id = %d AND level_id = %d AND status = 'active' LIMIT 1",
+				$user_id,
+				$level_id
+			),
+			ARRAY_A
+		);
+
+		if ( ! is_array( $row ) ) {
+			return null;
+		}
+
+		return $row;
+	}
 }
