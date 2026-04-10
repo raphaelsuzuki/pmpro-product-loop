@@ -35,6 +35,7 @@ class Core {
 	 */
 	public function process( Subscription_Intent $intent ): array {
 		if ( ! $intent->is_valid() ) {
+			$this->event( 'invalid_intent', (string) $intent->hash, 0 );
 			return $this->result( 'error', 'invalid_intent', 'Subscription intent is invalid.' );
 		}
 
