@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<ruleset name="PMPro Product Loop">
+  <description>PHPCS ruleset for PMPro Product Loop.</description>
+
+  <file>pmpro-product-loop.php</file>
+  <file>src</file>
+  <file>tests</file>
+
+  <exclude-pattern>vendor/*</exclude-pattern>
+
+  <rule ref="PSR12"/>
+</ruleset>

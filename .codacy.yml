@@ -1,0 +1,5 @@
+engines:
+  phpcs:
+    enabled: true
+exclude_paths:
+  - "vendor/**"
